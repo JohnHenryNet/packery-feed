@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="css/animate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
+  <script src="http://packery.metafizzy.co/packery.pkgd.min.js"></script>
+  <!--script type="text/javascript" src="jquery-imagefill.js"></script-->
+  <script type="text/javascript" src="js/jquery.imagefill.min.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+        getJson();
+		});
+	</script>
+  <title>Six Senses</title>
+</head>
+<body>
+  <header>
+    <div class="header">
+      <div class="menu row">
+        <div class="col-md-3">
+          <nav id="mainNavigation">
+              <ul class="nav">
+                <li class="active nav-item"><a href="">Home</a></li>
+                <li class="nav-item"><a href="#">About</a></li>
+              </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="logo"><a href="/"><img src="images/six-senses-logo.png" title="Six Senses" /></a></div></div>
+  </header>
+  <section>
+    <div class="filter-section">
+      <h1 class="tc">EDIT BY SIX SENSES</h1>
+      <div class="search-buttons">
+        <span onclick="getJson('facebook')"><i class="fa fa-facebook fa-2x"></i></span>
+        <span onclick="getJson('twitter')"><i class="fa fa-twitter fa-2x"></i></span>
+        <span onclick="getJson('pinterest')"><i class="fa fa-pinterest fa-2x"></i></span>
+        <span onclick="getJson('instagram')"><i class="fa fa-instagram fa-2x"></i></span>
+        <span onclick="getJson('youtube')"><i class="fa fa-youtube fa-2x"></i></span>
+      </div>
+      <div class="hastag">
+        <h3 class="tc">#OUTOFTHEORDINARY</h3>
+        <p class="tc">Six Senses Hotels Resorts Spas are discovered in some of the world's most unique and beautiful places</p>
+      </div>
+    </div>
+	 <div id="posts">	</div>
+  </section>
+  <footer>
+
+  </footer>
+</body>
+</html>
