@@ -18,6 +18,37 @@
 	<script type="text/javascript">
 		$( document ).ready(function() {
         getJson();
+        // browser window scroll (in pixels) after which the "back to top" link is shown
+        var offset = 400,
+        //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+        offset_opacity = 1200,
+        //duration of the top scrolling animation (in ms)
+        scroll_top_duration = 700,
+        //grab the "back to top" link
+        $back_to_top = $('.cd-top');
+
+
+        //hide or show the "back to top" link
+        $(window).scroll(function(){
+           $back_to_top.removeClass('cd-fade-stop');
+          ($(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+          if( $(this).scrollTop() > offset_opacity ) { 
+            $back_to_top.addClass('cd-fade-out');
+          }
+          clearTimeout($.data(this, 'scrollTimer'));
+          $.data(this, 'scrollTimer', setTimeout(function() {
+              $back_to_top.addClass('cd-fade-stop');
+          }, 2000));
+          revealOnScroll();
+        });
+        //smooth scroll to top
+        $back_to_top.on('click', function(event){
+          event.preventDefault();
+          $('body,html').animate({
+            scrollTop: 0 ,
+            }, scroll_top_duration
+          );
+        });
 		});
 	</script>
   <title>Six Senses</title>
@@ -29,8 +60,8 @@
         <div class="col-md-3">
           <nav id="mainNavigation">
               <ul class="nav">
-                <li class="active nav-item"><a href="">Home</a></li>
-                <li class="nav-item"><a href="#">About</a></li>
+                <li class="active nav-item"><a href="/">Home</a></li>
+                <li class="nav-item"><a href="about.html">About</a></li>
               </ul>
           </nav>
         </div>
@@ -52,10 +83,24 @@
         <p class="tc">Six Senses Hotels Resorts Spas are discovered in some of the world's most unique and beautiful places</p>
       </div>
     </div>
-	 <div id="posts">	</div>
+    <div><a href='#0' class='cd-top'>TOP</a></div>
+	  <div id="posts">	</div>
   </section>
   <footer>
-
+    <div class="footer tc">
+      <h3 class="tl">ADDRESS</h3>
+      <div class="pull-left">
+        <p class="tl">Six Senses Hotels Resorts Spas<br>
+          Park Ventures Ecoplex,<br>
+          57 Wireless Road,<br>
+          Bangkok 10330</p>
+        </div>
+      <div class="pull-right">
+        <p class="tl">Thailand<br>
+          T +66 2631 9777<br>
+          E-mail: mail@sixsenses.com</p>
+      </div>
+    </div>
   </footer>
 </body>
 </html>

@@ -5,7 +5,11 @@
 }
 @font-face {
     font-family: Book-Antigua;
-    src: url("../fonts/Book+Antiqua+Regular.ttf");
+    src: url("../fonts/book-antiqua-regular.ttf");
+}
+@font-face {
+    font-family: Calluna;
+    src: url("../fonts/calluna-regular.otf");
 }
 h1,h2,h3,h4,h5,h6{
   color:#63094a;
@@ -21,7 +25,7 @@ body{
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
-p { margin: 0 0 10px 0; font-family: 'Book-Antigua';}
+p { margin: 0 0 10px 0; font-family: 'Calluna','Book-Antigua';line-height: 1.3em;}
 .fa-lg {font-size: 1.13333333em !important;}
 a {
     cursor: pointer;
@@ -94,6 +98,8 @@ a {
     color: white;
     text-align: center;
     padding: 0 10%;
+    line-height: 1.1em;
+    font-family: 'Calluna','Book-Antigua';
 }
 .ugc-cta {
   background: #751a51;
@@ -225,7 +231,7 @@ a {
 }
 .feed-first-text .feed-title{
   font-size: 1.6em;
-  line-height: 1.4em;
+  line-height: 2.4em;
   font-family: 'Alternate-Gothic';
   color: #751a51;
 }
@@ -300,6 +306,11 @@ nav{
   font-size: 23px;
   padding: 20px;
 }
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #eee;
+    color: black;
+}
 .col-md-3{
     float: right !important;
     width: 400px !important;
@@ -311,6 +322,9 @@ nav{
 .tc{
   text-align: center;
   margin: 0 auto;
+}
+.tl{
+  text-align: left;
 }
 .search-buttons{
   color:white;
@@ -334,3 +348,102 @@ nav{
 .search-buttons > span {
     padding-left: 14px;
 }
+.social-buttons{
+  color:white;
+  margin:35px auto;
+}
+.social-buttons a i {
+  background-color: #f2f0f1;
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  padding-left: 0px;
+  cursor: pointer;
+}
+.social-buttons > a {
+    padding-left: 14px;
+    color:white;
+}
+.social-buttons > a i:hover {
+  background-color: #63094a;
+  color:white;
+}
+.footer {
+    width: 40%;
+}
+footer{
+    margin-top: 100px;
+}
+.about-text{
+  line-height: 1.8em;
+  font-size: 16px;
+  margin-bottom: 80px;
+}
+.breadcrum-page{
+  color:#f2f0f1;
+  font-size: 23px;
+  text-transform: uppercase;
+  margin: 96px 0 32px 0;
+  letter-spacing: 5px;
+}
+.active > a{
+  border:1px solid;
+} 
+/*******BEGIN GO TO TOP STYLES*********/
+.cd-top {
+  z-index:1;
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: rgba(117, 26, 81, 0.8) url('https://static1.squarespace.com/static/55372884e4b0282a8b8c6877/t/55794c7be4b0bc473a032d30/1434012795546/cd_top_arrow.png') no-repeat center 50%;
+  background-size: 44%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-stop{
+  visibility: hidden;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: 1;
+}
+.no-touch .cd-top:hover {
+  background-color: #3d042d ;
+  opacity: 1;
+}
+@media only screen and (min-width: 768px) {
+  .cd-top {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .cd-top {
+    height: 60px;
+    width: 60px;
+    right: 30px;
+    bottom: 30px;
+  }
+}
+/*******END GO TO TOP STYLES*********/
