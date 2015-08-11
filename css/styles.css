@@ -26,7 +26,7 @@ body{
           box-sizing: border-box;
 }
 p { margin: 0 0 10px 0; font-family: 'Calluna','Book-Antigua';line-height: 1.3em;}
-.fa-lg {font-size: 1.13333333em !important;}
+.fa-lg {font-size: 1.13333333em !important; vertical-align: -30% !important;}
 a {
     cursor: pointer;
     color: white;
@@ -402,6 +402,9 @@ footer{
 }
 .address{
   width: 180px;
+}
+.cursor{
+  cursor: pointer;
 }
 /*******BEGIN GO TO TOP STYLES*********/
 .cd-top {

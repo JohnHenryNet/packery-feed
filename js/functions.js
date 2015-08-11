@@ -39,7 +39,7 @@ function getJson(source){
         group = group + createItemDiv(i) + createFirstImageText(items)+"</div>";
         for(var j=0;j<highlight.length;j++){
           i++;
-          if(j<3){
+          if(j<=3){
             group = group + createContainer(highlight[j],i);
           }else{
             break;
@@ -73,9 +73,10 @@ function getJson(source){
 }
 
 function createContainer(val,i){
-	var container ="<div class='item item-w"+i+" revealOnScroll' data-animation='zoomIn' data-timeout='100'>"
+  var url= "'"+val.url+"'";
+	var container ="<div class='item item-w"+i+" revealOnScroll cursor' data-animation='zoomIn' data-timeout='100' onclick='window.open(&quot;"+val.url+"&quot;,&quot;_blank&quot;)'>"
   var img = "<img src='"+val.original_image+"' />";
-	var source = "<a href='"+val.url+"' target='_blank'><div class='feed-source feed-source-"+val.source+"'></div></a>";
+	var source = "<div class='feed-source feed-source-"+val.source+"'></div>";
 	var text = "<div class='post-title-color color-namebar-buttons'><div class='text-container'><p><span>"+val.comments+"</span></p><div class='sm-icons'><div class='follow'><a target='_blank' href='http://www.facebook.com/sharer.php?u="+val.url+"'><i class='fa fa-facebook fa-lg'></i></a><a target='_blank' href='http://twitter.com/share?url="+val.comments+"%20"+val.url+"'><i class='fa fa-twitter fa-lg'></i></a><a href='mailto:?subject=I sent this email from Six Senses feed.&amp;body=Check out this post "+val.url+"'><i class='fa fa-envelope fa-lg'></i></a></div></div></div></div>";
   return container + img+ source + text + "</div>";
 }
