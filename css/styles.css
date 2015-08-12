@@ -14,6 +14,9 @@
 h1,h2,h3,h4,h5,h6{
   color:#63094a;
 }
+h1{
+	font-size:25px !important;
+}
 /* force scrollbar */
 html { overflow-y: scroll; }
 body{
@@ -27,6 +30,9 @@ body{
 }
 p { margin: 0 0 10px 0; font-family: 'Calluna','Book-Antigua';line-height: 1.3em;}
 .fa-lg {font-size: 1.13333333em !important; vertical-align: -30% !important;}
+.fa-2x {
+    font-size: 1.5em !important;
+}
 a {
     cursor: pointer;
     color: white;
@@ -284,17 +290,17 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 100% 60%;
-  height:400px;
+  height:300px;
 }
 .logo{
   margin: 0 auto;
   width: 180px;
   margin-bottom: 20px;
-  cursor:pointer;   position: relative;
-  top: 45%;
-    -webkit-transform: translateY(-45%);
-    -ms-transform: translateY(-45%);
-    transform: translateY(-45%);
+  cursor:pointer;   
+  position: absolute;
+  top: 19%;
+  left: 0;
+  right: 0;
 }
 .logo img{
   max-width: 180px;
@@ -320,7 +326,7 @@ nav{
 }
 .filter-section{
   width:100%;
-  margin:27px auto;
+  margin:50px auto;
 }
 .filter-section-about {
     width: 70%;
@@ -347,11 +353,11 @@ nav{
 }
 .search-buttons span i {
   background-color: #63094a;
-  width: 52px;
-  height: 52px;
+  width: 41px;
+  height: 41px;
   border-radius: 26px;
-  line-height: 52px;
-  padding-left: 2px;
+  line-height: 42px;
+  padding-left: 0px;
   cursor: pointer;
 }
 .search-buttons > span {
