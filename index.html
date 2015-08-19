@@ -7,18 +7,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link rel="stylesheet" type="text/css" href="css/animate.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
   <script src="http://packery.metafizzy.co/packery.pkgd.min.js"></script>
-  <!--script type="text/javascript" src="jquery-imagefill.js"></script-->
   <script type="text/javascript" src="js/jquery.imagefill.min.js"></script>
 	<script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript">
 		$( document ).ready(function() {
         getJson();
-		
         // browser window scroll (in pixels) after which the "back to top" link is shown
         var offset = 400,
         //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
@@ -50,6 +46,11 @@
             }, scroll_top_duration
           );
         });
+        $("#searchterm").keyup(function(event){
+          if(event.keyCode == 13){
+              search($("#searchterm").val());
+          }
+        });
 		});
 	</script>
   <title>Six Senses</title>
@@ -67,7 +68,7 @@
           </nav>
         </div>
       </div>
-      <div class="logo"><a href="/"><img src="images/six-senses-logo.png" title="Six Senses" /></a></div></div>
+      <div class="logo"><a href="http://www.sixsenses.com" target="_blank"><img src="images/six-senses-logo.png" title="Six Senses" /></a></div></div>
   </header>
   <section>
     <div class="filter-section">
@@ -75,33 +76,18 @@
       <div class="search-buttons tc">
         <span onclick="getJson('facebook')"><i class="fa fa-facebook fa-2x"></i></span>
         <span onclick="getJson('twitter')"><i class="fa fa-twitter fa-2x"></i></span>
-        <span onclick="getJson('pinterest')"><i class="fa fa-pinterest fa-2x"></i></span>
+        <span onclick="getJson('pinterest')"><i class="fa fa-pinterest-p fa-2x"></i></span>
         <span onclick="getJson('instagram')"><i class="fa fa-instagram fa-2x"></i></span>
         <span onclick="getJson('youtube')"><i class="fa fa-youtube fa-2x"></i></span>
+        <span ><input type="text" id="searchterm" value="" placeholder=" SEARCH"/></span>
       </div>
       <div class="hastag ac">
         <h3 class="tc">#OUTOFTHEORDINARY</h3>
-        <p class="tc ac">Six Senses Hotels Resorts Spas are discovered in some of the world's most unique and beautiful places</p>
+        <p class="tc ac">The Edit by Six Senses is a shared gallery of joyful moments and experiences enjoyed at Six Senses.<br><br>Showcase your special images by including the hashtag #outoftheordinary with any posts on social media and connect with the world.</p>
       </div>
     </div>
     <div><a href='#0' class='cd-top'>TOP</a></div>
 	  <div id="posts">	</div>
   </section>
-  <footer>
-    <div class="footer tc ac">
-      <h3 class="tl">ADDRESS</h3>
-      <div class="address pull-left">
-        <p class="tl">Six Senses Hotels Resorts Spas<br>
-          Park Ventures Ecoplex,<br>
-          57 Wireless Road,<br>
-          Bangkok 10330</p>
-        </div>
-      <div class="address pull-right">
-        <p class="tl">Thailand<br>
-          T +66 2631 9777<br>
-          E-mail: mail@sixsenses.com</p>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>

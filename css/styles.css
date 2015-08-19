@@ -7,15 +7,12 @@
     font-family: Book-Antigua;
     src: url("../fonts/book-antiqua-regular.ttf");
 }
-@font-face {
-    font-family: Calluna;
-    src: url("../fonts/calluna-regular.otf");
-}
 h1,h2,h3,h4,h5,h6{
   color:#63094a;
 }
-h1{
-	font-size:25px !important;
+a:focus, a:hover {
+    color: #23527c;
+    text-decoration: none;
 }
 /* force scrollbar */
 html { overflow-y: scroll; }
@@ -28,8 +25,15 @@ body{
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
-p { margin: 0 0 10px 0; font-family: 'Calluna','Book-Antigua';line-height: 1.3em;}
-.fa-lg {font-size: 1.13333333em !important; vertical-align: -30% !important;}
+input[type='text']{
+  font-family: 'Book-Antigua';
+  background-color: #EEEEEE;
+  border: 1px solid #DCDBDC;
+  vertical-align: super;
+  height: 30px;
+}
+p { margin: 0 0 10px 0; font-family:'Book-Antigua';line-height: 1.3em;}
+.fa-lg {font-size: 1.13333333em !important;}
 .fa-2x {
     font-size: 1.5em !important;
 }
@@ -69,7 +73,7 @@ a {
 }
 .post-title-color.color-namebar-buttons {
     left: 9%;
-    top: 15%;
+    top: 17%;
     width: 81% !important;
     height: 68% !important;
 }
@@ -87,13 +91,22 @@ a {
 }
 .text-container{
   position: relative;
-  top: 45%;
-    -webkit-transform: translateY(-45%);
-    -ms-transform: translateY(-45%);
-    transform: translateY(-45%);
+  top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 .color-namebar-buttons{
     background-color: #751a51;
+}
+.time-text {
+  color:#3c062d;
+  font-family: 'Alternate-Gothic';
+  font-size: 14px;
+  padding: 0 10%;
+  text-align: center;
+  font-weight: 900;
+  margin: 0 0 4px 0;
 }
 .post-title-color.color-namebar-buttons > div > p >span{
      overflow: hidden;
@@ -105,19 +118,24 @@ a {
     text-align: center;
     padding: 0 10%;
     line-height: 1.1em;
-    font-family: 'Calluna','Book-Antigua';
+    font-family:'Book-Antigua';
+}
+.cta{
+  font-family: Book-Antigua;
+  text-transform: uppercase;
+  margin-top: 12px;
 }
 .ugc-cta {
   background: #751a51;
   color: white;
-  padding: 40% 10px;
+  padding: 29% 10px;
   text-align: center;
   width: inherit;
   height: inherit;
 }
 .ugc-cta .small-text {
-  font-size: .9em;
-  font-family: 'Alternate-Gothic';
+  font-size: 14px;
+  font-family: 'Book-Antigua';
 }
 .ugc-cta .brand-name {
   font-size: 1.6em;
@@ -157,7 +175,6 @@ a {
   bottom: 0;
   right: 0;*/
 }
-
 .item img:hover {
   zoom: 1;
   opacity:0.75 !important;
@@ -211,6 +228,23 @@ a {
     .packery{max-width: 490px;}
     .footer {width: 60% !important;}
 }
+
+@media only screen and (min-width: 510px) and (max-width: 1050px) {
+  .item-w1 > .post-title-color >.text-container p,
+    .item-w2 > .post-title-color >.text-container p,
+    .item-w3 > .post-title-color >.text-container p,
+    .item-w4 > .post-title-color >.text-container p,
+    .item-w5 > .post-title-color >.text-container p,
+    .item-w7 > .post-title-color >.text-container p,
+    .item-w8 > .post-title-color >.text-container p,
+    .item-w10 > .post-title-color >.text-container p,
+    .item-w11 > .post-title-color >.text-container p,
+    .item-w12 > .post-title-color >.text-container p,
+    .item-w13 > .post-title-color >.text-container p,
+    .item-w14 > .post-title-color >.text-container p,
+    .item-w15 > .post-title-color >.text-container p
+    {display:none;}
+}
 @media only screen and (min-width: 768px) and (max-width: 1050px) {
 
     .item-w0,.item-w6,.item-w9 { width: 384px; height: 384px}
@@ -232,11 +266,16 @@ a {
     .item-w15{ width: 350px; height: 350px}
     .packery{max-width: 1440px;}
     .footer {width: 26% !important;}
+    .ugc-cta { padding: 35% 10px;}
 }
 
 .feed-first-text{
   background-color: white;
-  padding: 20% 10% 0 0;
+  position: relative;
+  top: 45%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 .feed-first-text .feed-title{
   font-size: 1.6em;
@@ -269,16 +308,16 @@ a {
     text-align: center;
     margin-top: 5px;
 }
-.follow a{
+.follow span,.follow a{
     margin:2px;
     color: #FAFAFA;
-    background-color: #3d042d;
+    background-color: #3c062d;
     padding: 7px
 }
-.follow a:hover{
+.follow span:hover,.follow a:hover{
     margin:2px;
     color: #FAFAFA;
-    background-color: #63094a;
+    background-color: #5f0a47;
     padding: 7px
 }
 
@@ -289,7 +328,7 @@ a {
   background-image: url('../images/header.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 100% 60%;
+  background-position: 100% 72%;
   height:300px;
 }
 .logo{
@@ -298,7 +337,7 @@ a {
   margin-bottom: 20px;
   cursor:pointer;   
   position: absolute;
-  top: 19%;
+  top: 80px;
   left: 0;
   right: 0;
 }
@@ -329,7 +368,7 @@ nav{
   margin:50px auto;
 }
 .filter-section-about {
-    width: 70%;
+    width: 45%;
     margin: 27px auto;
 }
 .tc{
@@ -368,21 +407,21 @@ nav{
   margin:35px auto;
 }
 .social-buttons a i {
-  background-color: #f2f0f1;
+  background-color: #63094a;
   width: 52px;
   height: 52px;
   line-height: 52px;
   padding-left: 0px;
   cursor: pointer;
   margin-top: 10px;
+  color:white;
 }
 .social-buttons > a {
     padding-left: 14px;
     color:white;
 }
 .social-buttons > a i:hover {
-  background-color: #63094a;
-  color:white;
+  background-color: #c5c3c4;
 }
 .footer {
     width: 37%;
@@ -397,7 +436,7 @@ footer{
   margin-bottom: 80px;
 }
 .breadcrum-page{
-  color:#f2f0f1;
+  color:#c5c3c4;
   font-size: 23px;
   text-transform: uppercase;
   margin: 96px 0 32px 0;
@@ -411,6 +450,9 @@ footer{
 }
 .cursor{
   cursor: pointer;
+}
+#searchterm{
+  color:black;
 }
 /*******BEGIN GO TO TOP STYLES*********/
 .cd-top {

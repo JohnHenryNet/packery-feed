@@ -1,18 +1,44 @@
 var $window = $(window), 
-  win_height_padded = $window.height() * 0.8,
-  isTouch = Modernizr.touch;
+  win_height_padded = $window.height() * 0.8;
 
+function search(value){
+  if(value == ""){
+   getJson("");
+  }else{
+    var highlight = [];
+    var posts = [];
 
+    $.ajax({
+          type: 'GET',
+          dataType: 'jsonp',
+          data: {},
+          url: "http://www.tintup.com/api/posts/feed-page?query="+value+"&user_id=123933144&moderation=1&api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e&count=10&callback=?",
+          error: function (jqXHR, textStatus, errorThrown) {
+              console.log(jqXHR)
+          },
+          success: function (data) {
+            if(data != null && data.length>0){
+                $.each( data, function( key, val ) {
+                  if (val.highlight == "true") {
+                    highlight.push(val);
+                  }else{
+                    posts.push(val);
+                  }
+                });
+                showPosts(highlight,posts);
+            }else{
+              $("#posts").html("<h3 class='tc ac'>There are no posts here to view yet.</h3>");
+            }
+          }
+      });
+    
+    setTimeout(function(){packery()},4000);
+    setTimeout(function(){revealOnScroll()},4000);
+  }
+}
 function getJson(source){
-	var i = -1;
-  var items = [];
-  var item0 = {title:"TRENDING",subtitle:"Six Senses Hotels Resorts Spas are discovered in some of the world's most unique and beautiful places"};
-  var item1 = {title:"LIVE FEED",subtitle:"Six Senses Hotels Resorts Spas are discovered in some of the world's most unique and beautiful places"};
-  items.push(item1);
-  items.push(item0);
   var highlight = [];
   var posts = [];
-
 
   initialUrl = "https://api.tintup.com/v1/feed/feed-page?api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e" + '&count=101';
   callback = '&callback=?'
@@ -27,58 +53,84 @@ function getJson(source){
                 posts.push(val);
               }
             });
+            showPosts(highlight,posts);
           }
-      	}else{
-          $("#posts").html("");
+        }else{
+          $("#posts").html("<h3 class='tc ac'>There are no posts here to view yet.</h3>");
         }
-
-        var container ="<div class='packery clearfix'><div class='gutter-sizer'></div><div class='grid-sizer'></div>";
-        var group =container;
-        var feed = "";
-        //create highlight
-        group = group + createItemDiv(i) + createFirstImageText(items)+"</div>";
-        for(var j=0;j<highlight.length;j++){
-          i++;
-          if(j<=3){
-            group = group + createContainer(highlight[j],i);
-          }else{
-            break;
-          }
-        }
-        feed = group+"</div>"+ "<div class='spacer'></div>";
-        group = container; 
-        i=-1;
-        group = group + createItemDiv(i) + createFirstImageText(items)+"</div>";
-        //create posts
-        i++;
-        for(var j=0;j<posts.length;j++){
-          if(i==4 || i==10){
-            group = group + createItemDiv(i)+ createBanner()+"</div>"
-            i++;
-          }
-          if (i == 15){
-            group = group;
-            i=0;
-          }else{
-            group = group + createContainer(posts[j],i);
-            i++;
-          }
-        }
-        feed = feed+group+"</div>";
-        $("#posts").html(feed);
 	});
   
   setTimeout(function(){packery()},4000);
   setTimeout(function(){revealOnScroll()},4000);
 }
 
+function showPosts(highlight,posts){
+    var i = -1;
+    var items = [];
+    var item0 = {title:"TRENDING",subtitle:"Some favorite #outoftheordinary experiences at Six Senses resorts and spas."};
+    var item1 = {title:"LIVE FEED",subtitle:"Join our live feed to share your #outoftheordinary moments."};
+    items.push(item1);
+    items.push(item0);
+
+    var container ="<div class='packery clearfix'><div class='gutter-sizer'></div><div class='grid-sizer'></div>";
+    var group =container;
+    var feed = "";
+    //create highlight
+    if(highlight.length > 0){
+      group = group + createItemDiv(i) + createFirstImageText(items)+"</div>";
+      for(var j=0;j<highlight.length;j++){
+        i++;
+        if(j<=3){
+          group = group + createContainer(highlight[j],i);
+        }else{
+          break;
+        }
+      }
+      feed = group+"</div>"+ "<div class='spacer'></div>";
+      group = container; 
+      i=-1;
+    }
+    //create posts
+    if(posts.length > 0){
+      group = group + createItemDiv(i) + createFirstImageText(items)+"</div>";
+      i++;
+      for(var j=0;j<posts.length;j++){
+        if(i==4 || i==10){
+          group = group + createItemDiv(i)+ createBanner()+"</div>"
+          i++;
+        }
+        if (i == 15){
+          group = group;
+          i=0;
+        }else{
+          group = group + createContainer(posts[j],i);
+          i++;
+        }
+      }
+      feed = feed+group+"</div>";
+    }else{
+      feed = "<h3 class='tc ac'>There are no posts here to view yet.</h3>"
+    }
+    $("#posts").html(feed);
+}
+
 function createContainer(val,i){
-  var url= "'"+val.url+"'";
-	var container ="<div class='item item-w"+i+" revealOnScroll cursor' data-animation='zoomIn' data-timeout='100' onclick='window.open(&quot;"+val.url+"&quot;,&quot;_blank&quot;)'>"
-  var img = "<img src='"+val.original_image+"' />";
+	var shareText = "Share%20your%20most%20amazing%20and%20memorable%20%23outoftheordinary%20experiences%20at%20Six%20Senses%20resorts%20and%20spas%2E%20theedit%2Esixsenses%2Ecom";
+	var fb_share = "https://www.facebook.com/dialog/feed?app_id=412668832250655&display=popup&caption="+shareText+"&link="+val.url+"&redirect_uri=http://theedit.sixsenses.com/&name=THEEDIT%2ESIXSENSES%2ECOM";
+	var tw_share ="";
+	var url= "'"+val.url+"'";
+	var container ="<div class='item item-w"+i+" revealOnScroll cursor' data-animation='flipInX' data-timeout='100' onclick='window.open(&quot;"+val.url+"&quot;,&quot;_blank&quot;)'>"
+	var img = "<img src='"+val.original_image+"' />";
 	var source = "<div class='feed-source feed-source-"+val.source+"'></div>";
-	var text = "<div class='post-title-color color-namebar-buttons'><div class='text-container'><p><span>"+val.comments+"</span></p><div class='sm-icons'><div class='follow'><a target='_blank' href='http://www.facebook.com/sharer.php?u="+val.url+"'><i class='fa fa-facebook fa-lg'></i></a><a target='_blank' href='http://twitter.com/share?url="+val.comments+"%20"+val.url+"'><i class='fa fa-twitter fa-lg'></i></a><a href='mailto:?subject=I sent this email from Six Senses feed.&amp;body=Check out this post "+val.url+"'><i class='fa fa-envelope fa-lg'></i></a></div></div></div></div>";
-  return container + img+ source + text + "</div>";
+	var text = "<div class='post-title-color color-namebar-buttons'><div class='text-container'><p class='time-text'>"+calculateTimeAgo(val.created)+"</p><p><span>"+val.comments+"</span></p><div class='sm-icons'><div class='follow'><span onclick='window.open(&quot;"+fb_share+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-facebook fa-lg'></i></span><span onclick='window.open(&quot;http://twitter.com/share?url="+val.url+"&text="+shareText+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-twitter fa-lg'></i></span><span onclick='window.open(&quot;mailto:?subject="+shareText+".&amp;body=Check out this post "+val.url+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-envelope fa-lg'></i></span></div></div>";
+  var cta = ""
+  if (val.cta != ""){
+    ctaObject = JSON.parse(val.cta);
+    cta = "<div class='cta'><div class='sm-icons'><div class='follow'><span onclick='window.open(&quot;"+ctaObject.url+"&quot;,&quot;_blank&quot;)'>"+ctaObject.text+"</span></div></div></div></div></div>";
+  }else{
+    cta="</div></div>"
+  }
+  return container + img+ source + text + cta + "</div>";
 }
 function createFirstImageText(items){
   itemObj = items.pop();
@@ -86,13 +138,47 @@ function createFirstImageText(items){
   return banner;
 }
 function createBanner(){
-	banner= "<div class='ugc-cta' style='opacity: 1;'><div class='small-text'>Share your </div>		<div class='brand-name'>#OUTOFTHEORDINARY</div>	<div class='sm-icons'><div class='follow'><a href='https://www.facebook.com/'><i class='fa fa-facebook fa-lg'></i></a><a href='https://twiter.com/'><i class='fa fa-twitter fa-lg'></i></a><a href='https://www.pinterest.com/'><i class='fa fa-pinterest-p fa-lg'></i></a><a href='https://instagram.com/'><i class='fa fa-instagram fa-lg'></i></a></div></div>	</div>"
+	banner= "<div class='ugc-cta' style='opacity: 1;'><div class='small-text'>Share your </div>		<div class='brand-name'>#OUTOFTHEORDINARY</div>	<div class='small-text'>on </div>   <div class='sm-icons'><div class='follow'><a target='_blank' href='https://www.facebook.com/SixSenses'><i class='fa fa-facebook fa-lg'></i></a><a target='_blank' href='https://twitter.com/six_senses_'><i class='fa fa-twitter fa-lg'></i></a><a target='_blank' href='https://www.pinterest.com/sixsenseshotels/'><i class='fa fa-pinterest-p fa-lg'></i></a><a target='_blank' href='https://instagram.com/sixsenseshotelsresortsspas/'><i class='fa fa-instagram fa-lg'></i></a><a target='_blank' href='https://www.youtube.com/c/sixsenseshotelsresortsspas'><i class='fa fa-youtube fa-lg'></i></a></div></div>	</div>"
 	return banner ;
 }
 function createItemDiv(i){
-  return "<div class='item item-w"+i+" revealOnScroll' data-animation='zoomIn' data-timeout='100'>";
+  return "<div class='item item-w"+i+" revealOnScroll' data-animation='flipInX' data-timeout='100'>";
 }
+function calculateTimeAgo(time){
+  current = new Date();
+  previous = new Date(time*1000);
+  var msPerMinute = 60 * 1000;
+  var msPerHour = msPerMinute * 60;
+  var msPerDay = msPerHour * 24;
+  var msPerMonth = msPerDay * 30;
+  var msPerYear = msPerDay * 365;
 
+  var elapsed = current - previous;
+
+  if (elapsed < msPerMinute) {
+       return "about "+ Math.round(elapsed/1000) + ' seconds ago';   
+  }
+
+  else if (elapsed < msPerHour) {
+       return "about "+ Math.round(elapsed/msPerMinute) + ' minutes ago';   
+  }
+
+  else if (elapsed < msPerDay ) {
+       return "about "+ Math.round(elapsed/msPerHour ) + ' hours ago';   
+  }
+
+  else if (elapsed < msPerMonth) {
+      return "about "+ Math.round(elapsed/msPerDay) + ' days ago';   
+  }
+
+  else if (elapsed < msPerYear) {
+      return "about "+ Math.round(elapsed/msPerMonth) + ' months ago';   
+  }
+
+  else {
+      return "about "+ Math.round(elapsed/msPerYear ) + ' years ago';   
+  }
+}
 function revealOnScroll() {
   var scrolled = $window.scrollTop();
   $(".revealOnScroll:not(.animated)").each(function () {
@@ -120,14 +206,14 @@ function packery(){
   });
 
   var pckry = $container.data('packery');
-  var gutter = pckry.options.gutter || 0;
+  var gutter = pckry.options.gutter || 4;
   var columnWidth = pckry.options.columnWidth + gutter;
 
   function onResize() {
-    var outsideSize = getSize( $container.parent()[0] ).innerWidth;
-    var cols = Math.floor( outsideSize / ( columnWidth ) );
+    //var outsideSize = getSize( $container.parent()[0] ).innerWidth;
+   // var cols = Math.floor( outsideSize / ( columnWidth ) );
     // set container width to columns
-    $container.width( cols * columnWidth - gutter )
+    //$container.width( cols * columnWidth - gutter )
     // manually trigger layout
     $container.packery();
     // run imagefill inside the resize event
