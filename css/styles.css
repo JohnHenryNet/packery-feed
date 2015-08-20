@@ -33,7 +33,7 @@ input[type='text']{
   height: 30px;
 }
 p { margin: 0 0 10px 0; font-family:'Book-Antigua';line-height: 1.3em;}
-.fa-lg {font-size: 1.13333333em !important;}
+.fa-lg {font-size: 1.13333333em !important; line-height: 1.1em !important;}
 .fa-2x {
     font-size: 1.5em !important;
 }

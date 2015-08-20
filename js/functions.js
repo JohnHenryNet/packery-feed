@@ -117,12 +117,11 @@ function showPosts(highlight,posts){
 function createContainer(val,i){
 	var shareText = "Share%20your%20most%20amazing%20and%20memorable%20%23outoftheordinary%20experiences%20at%20Six%20Senses%20resorts%20and%20spas%2E%20theedit%2Esixsenses%2Ecom";
 	var fb_share = "https://www.facebook.com/dialog/feed?app_id=412668832250655&display=popup&caption="+shareText+"&link="+val.url+"&redirect_uri=http://theedit.sixsenses.com/&name=THEEDIT%2ESIXSENSES%2ECOM";
-	var tw_share ="";
-	var url= "'"+val.url+"'";
+	var tw_share="http://twitter.com/share?url="+val.url+"&text="+shareText;
 	var container ="<div class='item item-w"+i+" revealOnScroll cursor' data-animation='flipInX' data-timeout='100' onclick='window.open(&quot;"+val.url+"&quot;,&quot;_blank&quot;)'>"
 	var img = "<img src='"+val.original_image+"' />";
 	var source = "<div class='feed-source feed-source-"+val.source+"'></div>";
-	var text = "<div class='post-title-color color-namebar-buttons'><div class='text-container'><p class='time-text'>"+calculateTimeAgo(val.created)+"</p><p><span>"+val.comments+"</span></p><div class='sm-icons'><div class='follow'><span onclick='window.open(&quot;"+fb_share+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-facebook fa-lg'></i></span><span onclick='window.open(&quot;http://twitter.com/share?url="+val.url+"&text="+shareText+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-twitter fa-lg'></i></span><span onclick='window.open(&quot;mailto:?subject="+shareText+".&amp;body=Check out this post "+val.url+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-envelope fa-lg'></i></span></div></div>";
+	var text = "<div class='post-title-color color-namebar-buttons'><div class='text-container'><p class='time-text'>"+calculateTimeAgo(val.created)+"</p><p><span>"+val.comments+"</span></p><div class='sm-icons'><div class='follow'><a href='"+fb_share+"' target='_blank' title='Share on Facebook' onclick='openPopUp(this);'><i class='fa fa-facebook fa-lg'></i></a><a href='"+tw_share+"' target='_blank' title='Share on Twitter' onclick='openPopUp(this);'><i class='fa fa-twitter fa-lg'></i></a><a onclick='window.open(&quot;mailto:?subject="+shareText+".&amp;body=Check out this post "+val.url+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-envelope fa-lg'></i></a></div></div>";
   var cta = ""
   if (val.cta != ""){
     ctaObject = JSON.parse(val.cta);
@@ -131,6 +130,10 @@ function createContainer(val,i){
     cta="</div></div>"
   }
   return container + img+ source + text + cta + "</div>";
+}
+function openPopUp(element){
+  var redirectWindow = window.open(element.href, '_blank' ,'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+  redirectWindow.location;
 }
 function createFirstImageText(items){
   itemObj = items.pop();
