@@ -308,6 +308,10 @@ a {
     text-align: center;
     margin-top: 5px;
 }
+.follow.unclick a{
+  pointer-events: none;
+  cursor: default;
+}
 .follow span,.follow a{
     margin:2px;
     color: #FAFAFA;

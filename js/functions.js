@@ -141,7 +141,7 @@ function createFirstImageText(items){
   return banner;
 }
 function createBanner(){
-	banner= "<div class='ugc-cta' style='opacity: 1;'><div class='small-text'>Share your </div>		<div class='brand-name'>#OUTOFTHEORDINARY</div>	<div class='small-text'>on </div>   <div class='sm-icons'><div class='follow'><a target='_blank' href='https://www.facebook.com/SixSenses'><i class='fa fa-facebook fa-lg'></i></a><a target='_blank' href='https://twitter.com/six_senses_'><i class='fa fa-twitter fa-lg'></i></a><a target='_blank' href='https://www.pinterest.com/sixsenseshotels/'><i class='fa fa-pinterest-p fa-lg'></i></a><a target='_blank' href='https://instagram.com/sixsenseshotelsresortsspas/'><i class='fa fa-instagram fa-lg'></i></a><a target='_blank' href='https://www.youtube.com/c/sixsenseshotelsresortsspas'><i class='fa fa-youtube fa-lg'></i></a></div></div>	</div>"
+	banner= "<div class='ugc-cta' style='opacity: 1;'><div class='small-text'>Share your </div>		<div class='brand-name'>#OUTOFTHEORDINARY</div>	<div class='small-text'>on </div>   <div class='sm-icons'><div class='follow unclick'><a target='_blank' href='https://www.facebook.com/SixSenses'><i class='fa fa-facebook fa-lg'></i></a><a target='_blank' href='https://twitter.com/six_senses_'><i class='fa fa-twitter fa-lg'></i></a><a target='_blank' href='https://www.pinterest.com/sixsenseshotels/'><i class='fa fa-pinterest-p fa-lg'></i></a><a target='_blank' href='https://instagram.com/sixsenseshotelsresortsspas/'><i class='fa fa-instagram fa-lg'></i></a><a target='_blank' href='https://www.youtube.com/c/sixsenseshotelsresortsspas'><i class='fa fa-youtube fa-lg'></i></a></div></div>	</div>"
 	return banner ;
 }
 function createItemDiv(i){
