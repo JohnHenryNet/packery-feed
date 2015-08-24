@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <!--[if lt IE 9]>
+  <script> window.location = "ie-sixsenses.html";</script>
+<![endif]-->
+<!--[if gte IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <html>
@@ -15,7 +18,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
   <script src="http://packery.metafizzy.co/packery.pkgd.min.js"></script>
   <script type="text/javascript" src="js/jquery.imagefill.min.js"></script>
-	<script type="text/javascript" src="js/functions.js"></script>
+  <script type="text/javascript" src="js/functions.js"></script>
+  <script type="text/javascript" src="js/Clamp.js"></script>
 	<script type="text/javascript">
 		$( document ).ready(function() {
         getJson();
@@ -55,7 +59,7 @@
               search($("#searchterm").val());
           }
         });
-		});
+	});
 	</script>
   <title>Six Senses</title>
 </head>

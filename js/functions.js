@@ -12,7 +12,7 @@ function search(value){
           type: 'GET',
           dataType: 'jsonp',
           data: {},
-          url: "http://www.tintup.com/api/posts/feed-page?query="+value+"&user_id=123933144&moderation=1&api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e&count=10&callback=?",
+          url: "http://www.tintup.com/api/posts/feed-page?query="+value+"&moderation=1&user_id=123933144&moderation=1&api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e&count=10&callback=?",
           error: function (jqXHR, textStatus, errorThrown) {
               console.log(jqXHR)
           },
@@ -121,7 +121,7 @@ function createContainer(val,i){
 	var container ="<div class='item item-w"+i+" revealOnScroll cursor' data-animation='flipInX' data-timeout='100' onclick='window.open(&quot;"+val.url+"&quot;,&quot;_blank&quot;)'>"
 	var img = "<img src='"+val.original_image+"' />";
 	var source = "<div class='feed-source feed-source-"+val.source+"'></div>";
-	var text = "<div class='post-title-color color-namebar-buttons'><div class='text-container'><p class='time-text'>"+calculateTimeAgo(val.created)+"</p><p><span>"+val.comments+"</span></p><div class='sm-icons'><div class='follow'><a href='"+fb_share+"' target='_blank' title='Share on Facebook' onclick='openPopUp(this);'><i class='fa fa-facebook fa-lg'></i></a><a href='"+tw_share+"' target='_blank' title='Share on Twitter' onclick='openPopUp(this);'><i class='fa fa-twitter fa-lg'></i></a><a onclick='window.open(&quot;mailto:?subject="+shareText+".&amp;body=Check out this post "+val.url+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-envelope fa-lg'></i></a></div></div>";
+	var text = "<div class='post-title-color color-namebar-buttons'><div class='text-container'><p class='time-text'>"+calculateTimeAgo(val.created)+"</p><p class='post-comments'>"+clapText(i,val.comments)+"</p><div class='sm-icons'><div class='follow'><a href='"+fb_share+"' target='_blank' title='Share on Facebook' onclick='openPopUp(this);'><i class='fa fa-facebook fa-lg'></i></a><a href='"+tw_share+"' target='_blank' title='Share on Twitter' onclick='openPopUp(this);'><i class='fa fa-twitter fa-lg'></i></a><a onclick='window.open(&quot;mailto:?subject="+shareText+".&amp;body=Check out this post "+val.url+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-envelope fa-lg'></i></a></div></div>";
   var cta = ""
   if (val.cta != ""){
     ctaObject = JSON.parse(val.cta);
@@ -130,6 +130,9 @@ function createContainer(val,i){
     cta="</div></div>"
   }
   return container + img+ source + text + cta + "</div>";
+}
+function clapText(i,text){
+	return ((i == 0 || i== 6 || i==9)?text.substring(0,120):text.substring(0,54))+"...";
 }
 function openPopUp(element){
   var redirectWindow = window.open(element.href, '_blank' ,'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
