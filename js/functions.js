@@ -12,7 +12,7 @@ function search(value){
           type: 'GET',
           dataType: 'jsonp',
           data: {},
-          url: "http://www.tintup.com/api/posts/feed-page?query="+value+"&moderation=1&user_id=123933144&moderation=1&api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e&count=10&callback=?",
+          url: "http://www.tintup.com/api/posts/feed-page?query="+value+"&moderation=0&user_id=123933144&moderation=1&api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e&count=10&callback=?",
           error: function (jqXHR, textStatus, errorThrown) {
               console.log(jqXHR)
           },
@@ -31,9 +31,6 @@ function search(value){
             }
           }
       });
-    
-    setTimeout(function(){packery()},4000);
-    setTimeout(function(){revealOnScroll()},4000);
   }
 }
 function getJson(source){
@@ -59,9 +56,6 @@ function getJson(source){
           $("#posts").html("<h3 class='tc ac'>There are no posts here to view yet.</h3>");
         }
 	});
-  
-  setTimeout(function(){packery()},4000);
-  setTimeout(function(){revealOnScroll()},4000);
 }
 
 function showPosts(highlight,posts){
@@ -112,6 +106,8 @@ function showPosts(highlight,posts){
       feed = "<h3 class='tc ac'>There are no posts here to view yet.</h3>"
     }
     $("#posts").html(feed);
+    packery();
+    revealOnScroll();
 }
 
 function createContainer(val,i){
@@ -221,9 +217,11 @@ function packery(){
     // set container width to columns
     //$container.width( cols * columnWidth - gutter )
     // manually trigger layout
-    $container.packery();
-    // run imagefill inside the resize event
-    $(".item img").imagefill();
+    $container.imagesLoaded( function() {
+      $container.packery();
+      // run imagefill inside the resize event
+      $(".item img").imagefill();
+    });
   }
 
   // debounce resize event
