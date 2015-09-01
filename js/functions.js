@@ -12,7 +12,7 @@ function search(value){
           type: 'GET',
           dataType: 'jsonp',
           data: {},
-          url: "http://www.tintup.com/api/posts/feed-page?query="+value+"&moderation=0&user_id=123933144&moderation=1&api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e&count=10&callback=?",
+          url: "http://www.tintup.com/api/posts/feed-page?query="+value+"&moderation=0&user_id=123933144&moderation=1&api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e&callback=?",
           error: function (jqXHR, textStatus, errorThrown) {
               console.log(jqXHR)
           },
