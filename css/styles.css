@@ -215,6 +215,15 @@ a {
     .filter-section-about {width: 80% !important;}
     .social-buttons a i{width: 40px !important;height: 40px !important;line-height: 40px !important;}
     .social-buttons > a {padding-left: 7px !important;}
+    .post-title-color.color-namebar-buttons {
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      opacity: 1 !important;
+      height: 10% !important;top: 90% !important;
+    }
+    .time-text, .post-comments{display:none;}
+    .follow {text-align: left !important;;margin-top: 0px !important;;margin-left: 10px;}
 }
 @media only screen and (min-width: 510px) and (max-width: 629px) {
 
@@ -231,6 +240,19 @@ a {
     .filter-section-about {width: 80% !important;}
     .social-buttons a i{width: 40px !important;height: 40px !important;line-height: 40px !important;}
     .social-buttons > a {padding-left: 7px !important;}
+    .post-title-color.color-namebar-buttons {
+      left: 0 !important;
+      right: 0 !important;
+      top: 83% !important;
+      width: 100% !important;
+      opacity: 1 !important;
+      height: 17% !important;
+    }
+    .item-w0>.post-title-color.color-namebar-buttons ,.item-w6>.post-title-color.color-namebar-buttons ,.item-w9 >.post-title-color.color-namebar-buttons 
+    {height: 10% !important;top: 90% !important;}
+    .time-text, .post-comments{display:none;}
+    .follow {text-align: left !important;;margin-top: 0px !important;;margin-left: 10px;}
+
 }
 @media only screen and (min-width: 630px) and (max-width: 767px) {
 
@@ -244,6 +266,18 @@ a {
     .footer {width: 60% !important;}    
     .hastag p{width: 80% !important;}    
     .filter-section-about {width: 80% !important;}
+    .post-title-color.color-namebar-buttons {
+      left: 0 !important;
+      right: 0 !important;
+      top: 83% !important;
+      width: 100% !important;
+      opacity: 1 !important;
+      height: 17% !important;
+    }
+    .item-w0>.post-title-color.color-namebar-buttons ,.item-w6>.post-title-color.color-namebar-buttons ,.item-w9 >.post-title-color.color-namebar-buttons 
+    {height: 10% !important;top: 90% !important;}
+    .time-text, .post-comments{display:none;}
+    .follow {text-align: left !important;;margin-top: 0px !important;;margin-left: 10px;}
 }
 
 @media only screen and (min-width: 510px) and (max-width: 1050px) {
@@ -322,21 +356,21 @@ a {
 .spacer{
   height: 150px;
 }
-.follow{
+.follow,.follow-banner{
     text-align: center;
     margin-top: 5px;
 }
-.follow.unclick a{
+.follow-banner.unclick a{
   pointer-events: none;
   cursor: default;
 }
-.follow span,.follow a{
+.follow-banner a,.follow a{
     margin:2px;
     color: #FAFAFA;
     background-color: #3c062d;
     padding: 7px
 }
-.follow span:hover,.follow a:hover{
+.follow-banner a:hover,.follow a:hover{
     margin:2px;
     color: #FAFAFA;
     background-color: #5f0a47;
