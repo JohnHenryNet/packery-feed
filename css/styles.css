@@ -38,7 +38,8 @@ p { margin: 0 0 10px 0; font-family:'Book-Antigua';line-height: 1.3em;}
     font-size: 1.5em !important;
 }
 i.fa.fa-lg{
-  width: 13px;
+  width: 16px;
+  text-align: center;
 }
 a {
     cursor: pointer;
