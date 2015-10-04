@@ -3,7 +3,7 @@ var $window = $(window),
 
 function search(value){
   if(value == ""){
-   getJson("");
+    getJson("");
   }else{
     var highlight = [];
     var posts = [];
@@ -17,6 +17,7 @@ function search(value){
               console.log(jqXHR)
           },
           success: function (data) {
+            console.debug(url);
             if(data != null && data.length>0){
                 $.each( data, function( key, val ) {
                   if (val.highlight == "true") {
@@ -25,7 +26,9 @@ function search(value){
                     posts.push(val);
                   }
                 });
-                showPosts(highlight,posts);
+                $("#posts").html("");
+                showHighlight(highlight);
+                showPosts(posts);
             }else{
               $("#posts").html("<h3 class='tc ac'>There are no posts here to view yet.</h3>");
             }
@@ -33,11 +36,13 @@ function search(value){
       });
   }
 }
+var container ="<div class='packery clearfix'><div class='gutter-sizer'></div><div class='grid-sizer'></div>";
+var link;
 function getJson(source){
   var highlight = [];
   var posts = [];
 
-  initialUrl = "https://api.tintup.com/v1/feed/feed-page?api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e" + '&count=101';
+  initialUrl = "https://api.tintup.com/v1/feed/feed-page?api_token=3c9aa7e3281cccf47ca65fc005dc89c9c2651c1e" + '&count=193';
   callback = '&callback=?'
   url = (source != "undefined" || source!="")?initialUrl+"&source="+source+callback:initialUrl+callback;
 	$.getJSON( url, function( data ) {
@@ -50,7 +55,10 @@ function getJson(source){
                 posts.push(val);
               }
             });
-            showPosts(highlight,posts);
+            $("#posts").html("");
+            showHighlight(highlight);
+            showPosts(posts);
+            link = data.next_page;
           }
         }else{
           $("#posts").html("<h3 class='tc ac'>There are no posts here to view yet.</h3>");
@@ -58,20 +66,17 @@ function getJson(source){
 	});
 }
 
-function showPosts(highlight,posts){
+function showHighlight(highlight){
     var i = -1;
     var items = [];
-    var item0 = {title:"TRENDING",subtitle:"Some favorite #outoftheordinary experiences at Six Senses resorts and spas."};
-    var item1 = {title:"LIVE FEED",subtitle:"Join our live feed to share your #outoftheordinary moments."};
-    items.push(item1);
-    items.push(item0);
+    var title="TRENDING";
+    var subtitle="Some favorite #outoftheordinary experiences at Six Senses resorts and spas.";
 
-    var container ="<div class='packery clearfix'><div class='gutter-sizer'></div><div class='grid-sizer'></div>";
     var group =container;
     var feed = "";
     //create highlight
     if(highlight.length > 0){
-      group = group + createItemDiv(i) + createFirstImageText(items)+"</div>";
+      group = group + createItemDiv(i) + createFirstImageText(title, subtitle)+"</div>";
       for(var j=0;j<highlight.length;j++){
         i++;
         if(j<=3){
@@ -81,35 +86,90 @@ function showPosts(highlight,posts){
         }
       }
       feed = group+"</div>"+ "<div class='spacer'></div>";
-      group = container; 
-      i=-1;
     }
-    //create posts
-    if(posts.length > 0){
-      group = group + createItemDiv(i) + createFirstImageText(items)+"</div>";
-      i++;
-      for(var j=0;j<posts.length;j++){
-        if(i==4 || i==10){
-          group = group + createItemDiv(i)+ createBanner()+"</div>"
-          i++;
-        }
-        if (i == 15){
-          group = group;
-          i=0;
-        }else{
-          group = group + createContainer(posts[j],i);
-          i++;
-        }
+    $("#posts").append(feed);
+}
+function showPosts(posts){
+  //create posts
+  var title="LIVE FEED";
+  var subtitle="Join our live feed to share your #outoftheordinary moments.";
+  var feed = "";
+  var group = container; 
+  i=-1;
+  if(posts.length > 0){
+    group = group + createItemDiv(i) + createFirstImageText(title,subtitle)+"</div>";
+    i++;
+    for(var j=0;j<posts.length;j++){
+      if(i==4 || i==10){
+        group = group + createItemDiv(i)+ createBanner()+"</div>"
+        i++;
       }
-      feed = feed+group+"</div>";
-    }else{
-      feed = "<h3 class='tc ac'>There are no posts here to view yet.</h3>"
+      if (i == 15){
+        group = group;
+        i=0;
+      }else{
+        group = group + createContainer(posts[j],i);
+        i++;
+      }
     }
-    $("#posts").html(feed);
-    packery();
-    revealOnScroll();
+    
+  }
+  feed = feed+group+"</div>";
+  $("#posts").append(feed);
+  packery();
+  revealOnScroll();
 }
 
+function showMorePosts(posts){
+  //create posts
+  var feed = "";
+  i=-1;
+  var group = container;
+  var j=0;
+  if(posts.length > 0){
+    group = group + createContainer(posts[j],i);
+    j=1;
+    while(j<posts.length){
+      if(i==4 || i==10){
+        group = group + createItemDiv(i)+ createBanner()+"</div>"
+        i++;
+      }
+      if (i == 15){
+        group = group;
+        i=0;
+      }else{
+        group = group + createContainer(posts[j],i);
+        i++;
+      }
+      j++;
+    }
+  }
+
+  feed = feed+group;
+  $("#posts").append(feed);
+  packery();
+  revealOnScroll();
+}
+var processing;
+
+function morePosts(){
+  if (processing)
+    return false;
+
+  console.debug(link);
+  url = link +'&callback=?';
+  processing = true; 
+  $.getJSON( url, function( data ) {
+        if(data != null && data.data.length>0){
+          if(data.data.length > 0){
+            posts=data.data;
+            showPosts(posts, false);
+            link = data.next_page;
+            processing = false;
+          }
+        }
+  });
+}
 function createContainer(val,i){
 	var shareText = "Share%20your%20most%20amazing%20and%20memorable%20%23outoftheordinary%20experiences%20at%20Six%20Senses%20resorts%20and%20spas%2E%20theedit%2Esixsenses%2Ecom";
 	var fb_share = "https://www.facebook.com/dialog/feed?app_id=412668832250655&display=popup&caption="+shareText+"&link="+val.url+"&redirect_uri=http://theedit.sixsenses.com/&name=THEEDIT%2ESIXSENSES%2ECOM";
@@ -134,9 +194,8 @@ function openPopUp(element){
   var redirectWindow = window.open(element.href, '_blank' ,'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
   redirectWindow.location;
 }
-function createFirstImageText(items){
-  itemObj = items.pop();
-  banner = "<div class='feed-first-text'><div class='feed-title'>"+itemObj.title+"</div><p>"+itemObj.subtitle+"</p></div>";
+function createFirstImageText(title,subtitle){
+  banner = "<div class='feed-first-text'><div class='feed-title'>"+title+"</div><p>"+subtitle+"</p></div>";
   return banner;
 }
 function createBanner(){
@@ -156,6 +215,10 @@ function calculateTimeAgo(time){
   var msPerYear = msPerDay * 365;
 
   var elapsed = current - previous;
+
+  if(elapsed < 0){
+    elapsed = current - new Date(time*100);
+  }
 
   if (elapsed < msPerMinute) {
        return "about "+ Math.round(elapsed/1000) + ' seconds ago';   

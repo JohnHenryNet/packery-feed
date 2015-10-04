@@ -9,7 +9,7 @@
 <head profile="http://www.w3.org/2005/10/profile">  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Six Senses Shared</title>
+  <title>The Edit by Six Senses</title>
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -43,6 +43,11 @@
               $back_to_top.addClass('cd-fade-stop');
           }, 2000));
           revealOnScroll();
+          // calculate the percentage the user has scrolled down the page
+          var scrollPercent = ($(window).scrollTop() / $(document).height()) * 100;
+          if(scrollPercent > 95) {
+            morePosts();
+          }
         });
         //smooth scroll to top
         $back_to_top.on('click', function(event){

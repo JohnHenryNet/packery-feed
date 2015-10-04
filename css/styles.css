@@ -15,10 +15,58 @@ a:focus, a:hover {
     text-decoration: none;
 }
 /* force scrollbar */
-html { overflow-y: scroll; }
+html { 
+  overflow-y: auto; 
+  overflow-x: hidden;
+}
 body{
-  margin:0;
   font-family: 'Alternate-Gothic';
+  overflow-x:hidden;
+}
+/*******header styles*******/
+
+.header{
+  background-image: url('../images/header.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 100% 72%;
+  height:300px;
+  overflow-x:hidden !important;
+}
+.logo{
+  margin: 0 auto;
+  width: 180px;
+  margin-bottom: 20px;
+  cursor:pointer;   
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+}
+.logo img{
+  max-width: 180px;
+}
+nav{
+  display: block;
+  text-transform: uppercase;
+}
+.nav-item{
+  display: inline-block !important;
+  vertical-align: middle;
+  font-size: 23px;
+  padding: 20px 15px 10px 0px;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #eee;
+    color: black;
+}
+.col-md-3,.col-md-2{
+    float: right !important;
+    width: 270px !important;
+}
+.col-md-3 > * {
+    float: right;
 }
 * {
   -webkit-box-sizing: border-box;
@@ -55,6 +103,10 @@ a {
   z-index: 5;
   bottom: 15px;
   height: 40px;
+  background-color: #751a51;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  border-radius: 36px;
 }
 .feed-source-1{
 	background-image:url("../images/icon_fb.png");
@@ -194,7 +246,7 @@ a {
 .item-w15{ width: 256px; height: 256px}
 
 .packery{
-  margin: 0 auto;
+  margin: 4px auto;
   max-width: 1036px; 
 }
 .packery:after {
@@ -300,6 +352,7 @@ a {
     .item-w15 > .post-title-color >.text-container p
     {display:none;}
     .filter-section-about {width: 80% !important;}
+    .ugc-cta .sm-icons > div {margin: 0 0px !important;}
 }
 @media only screen and (min-width: 768px) and (max-width: 1050px) {
 
@@ -371,7 +424,7 @@ a {
 .follow-banner a,.follow a{
     margin:2px;
     color: #FAFAFA;
-    background-color: #3c062d;
+    //background-color: #3c062d;
     padding: 7px
 }
 .follow-banner a:hover,.follow a:hover{
@@ -393,50 +446,7 @@ a {
 	line-height: 31px;
 	font-size:18px;
 }
-/*******header styles*******/
 
-.header{
-  background-image: url('../images/header.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 100% 72%;
-  height:300px;
-}
-.logo{
-  margin: 0 auto;
-  width: 180px;
-  margin-bottom: 20px;
-  cursor:pointer;   
-  position: absolute;
-  top: 80px;
-  left: 0;
-  right: 0;
-}
-.logo img{
-  max-width: 180px;
-}
-nav{
-  display: block;
-  text-transform: uppercase;
-}
-.nav-item{
-  display: inline-block !important;
-  vertical-align: middle;
-  font-size: 23px;
-  padding: 20px 15px 10px 0px;
-}
-.nav>li>a:focus, .nav>li>a:hover {
-    text-decoration: none;
-    background-color: #eee;
-    color: black;
-}
-.col-md-3,.col-md-2{
-    float: right !important;
-    width: 270px !important;
-}
-.col-md-3 > * {
-    float: right;
-}
 .filter-section{
   width:100%;
   margin:50px auto;
