@@ -97,16 +97,23 @@ a {
 .feed-source{
   position: absolute;
   right: 15px;
-  width: 40px;
-  background-size: 40px 40px;
-  background-repeat: no-repeat;
+  width: 25px;
   z-index: 5;
   bottom: 15px;
-  height: 40px;
+  height: 25px;
   background-color: #751a51;
   -webkit-border-radius: 35px;
   -moz-border-radius: 35px;
   border-radius: 36px;
+}
+.feed-source-inner{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  right: -7px;
+  bottom: -7px;
 }
 .feed-source-1{
 	background-image:url("../images/icon_fb.png");

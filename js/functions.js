@@ -176,7 +176,7 @@ function createContainer(val,i){
 	var tw_share="http://twitter.com/share?url="+val.url+"&text="+shareText;
 	var container ="<div class='item item-w"+i+" revealOnScroll cursor' data-animation='flipInX' data-timeout='100' onclick='window.open(&quot;"+val.url+"&quot;,&quot;_blank&quot;)'>"
 	var img = "<img src='"+val.original_image+"' />";
-	var source = "<div class='feed-source feed-source-"+val.source+"'></div>";
+	var source = "<div class='feed-source'><div class='feed-source-inner feed-source-"+val.source+"'></div></div>";
 	var text = "<div class='post-title-color color-namebar-buttons'><div class='text-container'><p class='time-text'>"+calculateTimeAgo(val.created)+"</p><p class='post-comments'>"+clapText(i,val.comments)+"</p><div class='sm-icons'><div class='follow'><a href='"+fb_share+"' target='_blank' title='Share on Facebook' onclick='openPopUp(this);'><i class='fa fa-facebook fa-lg'></i></a><a href='"+tw_share+"' target='_blank' title='Share on Twitter' onclick='openPopUp(this);'><i class='fa fa-twitter fa-lg'></i></a><a onclick='window.open(&quot;mailto:?subject="+shareText+".&amp;body=Check out this post "+val.url+"&quot;,&quot;_blank&quot;);return false;'><i class='fa fa-envelope fa-lg'></i></a></div></div>";
   var cta = ""
   if (val.cta != ""){
